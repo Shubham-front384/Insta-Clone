@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+
 async function userCookieRequest(req, res, next) {
   const token = req.cookies.token;
 

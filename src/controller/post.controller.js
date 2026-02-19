@@ -26,7 +26,7 @@ async function postCreateController(req, res) {
 }
 
 async function getPostCreatedController(req, res) {
-  let user = req.user;
+  let user = req.user.id;
 
   const post = await postModel.find({
     user
@@ -41,7 +41,7 @@ async function getPostCreatedController(req, res) {
 async function getPostDetailController(req, res) {
   const postId = req.params.postid;
 
-  let userId = user.id;
+  let userId = req.user.id;
 
   let post = await postModel.findById(postId);
   if (!post) {
