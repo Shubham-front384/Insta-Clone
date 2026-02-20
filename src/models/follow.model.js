@@ -6,6 +6,14 @@ const followSchema = new mongoose.Schema({
   },
   following: {
     type: String
+  },
+  status: {
+    type: String,
+    enum: {
+      values: ["Pending", "Accepted", "Rejected"],
+      msg: "Status can only be pending accepted or rejected"
+    },
+    default: "Pending"
   }
 }, { timestamps: true });
 
