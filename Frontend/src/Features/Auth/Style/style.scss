@@ -1,0 +1,214 @@
+@mixin flexProperty($dir: column) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@mixin widthHeight {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+  padding: 0.5rem;
+
+  display: flex;
+  gap: 0.5rem;
+
+  .left-side {
+    @include widthHeight();
+
+    background: violet;
+    border-radius: 20px;
+
+    display: none;
+
+    img {
+      @include widthHeight();
+
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  .right-side {
+    @include widthHeight();
+
+    margin: 0 auto;
+
+    @include flexProperty();
+
+    .right-info {
+      text-align: center;
+
+      h2 {
+        font-size: clamp(2.25rem, 5vw, 1rem);
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+
+      p {
+        font-size: clamp(1rem, 1.85vw, 1.05rem);
+        margin: 0 1rem;
+        padding-block: .5rem;
+      }
+    }
+
+    form {
+      width: 95%;
+      padding-block: .85rem;
+      
+      @include flexProperty();
+
+      input {
+        width: 100%;
+        padding: 1rem;
+        border-radius: .85rem;
+        border: 1.5px solid;
+        outline: none;
+
+        font-size: clamp(0.85rem, 1vw, 1rem);
+      }
+
+      .password-input {
+        width: 100%;
+        text-align: center;
+
+        position: relative;
+
+        .password {
+          width: 100%;
+          padding: 1rem;
+          border-radius: .85rem;
+          border: 1.5px solid;
+          outline: none;
+
+          font-size: clamp(0.85rem, 1vw, 1rem);
+        }
+
+        .eye {
+          position: absolute;
+          right: 1.5rem;
+          top: .75rem;
+
+          cursor: pointer;
+        }
+      }
+
+      p {
+        width: 100%;
+        text-align: end;
+        text-transform: capitalize;
+      }
+      
+      button {
+        width: 100%;
+        padding: 1rem;
+        border-radius: .85rem;
+        border: none;
+        outline: none;
+        text-transform: capitalize;
+        font-size: clamp(1rem, 1.85vw, 1.05rem);
+        cursor: pointer;
+
+        background: #0A0A0A;
+        color: #FAFAFA;
+      }
+
+      .line {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+
+        width: 100%;
+
+        span {
+          width: 100%;
+          height: 2%;
+          background: #0A0A0A;
+          
+          display: block;
+        }
+
+        h5 {
+          white-space: nowrap;
+          font-size: clamp(0.85rem, 1vw, 1rem);
+          font-weight: 500;
+        }
+      }
+
+      .app-login {
+        list-style-type: none;
+
+        @include flexProperty(row);
+      }
+    }
+
+    p {
+      font-size: clamp(1rem, 1.85vw, 1.05rem);
+      color: #0A0A0A;
+
+      a {
+        text-decoration: none;
+        color: #8E977D;
+      }
+    }
+  }
+}
+
+.right {
+  .left-side {
+    order: 2;
+    background: #FF4400;
+  }
+
+  .right-side {
+    form {
+      .inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+
+        width: 100%;
+      }
+
+      .password-input {
+        grid-column: span 2;
+
+        .eye {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    .right-side {
+      width: 78%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding: 1.5rem;
+
+    .left-side {
+      display: block;
+    }
+
+    .right-side {
+      width: 100%;
+
+      .right-info, form {
+        width: 75%;
+      }
+    }
+  }
+}
